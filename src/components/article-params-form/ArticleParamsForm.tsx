@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
-import { Option } from '../../ui/radio-group/Option';
+import { RadioGroup } from 'src/ui/radio-group';
+import { Select } from 'src/ui/select';
 
 import {
   fontSizeOptions,
@@ -83,80 +84,46 @@ export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) =
       {isOpen && (
         <aside ref={containerRef} className={clsx(styles.container, { [styles.container_open]: isOpen })}>
           <form className={styles.form} onSubmit={handleSubmit} onReset={handleReset}>
-            <div>
-              <h3>Шрифт</h3>
-              {fontFamilyOptions.map((opt) => (
-                <Option
-                  key={opt.value}
-                  value={opt.value}
-                  title={opt.title}
-                  groupName="fontFamily"
-                  selected={settings.fontFamily}
-                  option={opt}
-                  onChange={(option) => handleChange('fontFamily', option)}
-                />
-              ))}
-            </div>
+            
+            <Select
+			// name="fontFamily"
+			title="Шрифт"
+			options={fontFamilyOptions}
+			selected={settings.fontFamily}
+			onChange={(option) => handleChange('fontFamily', option)}
+			/>
 
-            <div>
-              <h3>Размер шрифта</h3>
-              {fontSizeOptions.map((opt) => (
-                <Option
-                  key={opt.value}
-                  value={opt.value}
-                  title={opt.title}
-                  groupName="fontSize"
-                  selected={settings.fontSize}
-                  option={opt}
-                  onChange={(option) => handleChange('fontSize', option)}
-                />
-              ))}
-            </div>
+<			RadioGroup
+			name="fontSize"
+			title="Размер шрифта"
+			options={fontSizeOptions}
+			selected={settings.fontSize}
+			onChange={(option) => handleChange('fontSize', option)}
+			/>
 
-            <div>
-              <h3>Цвет шрифта</h3>
-              {fontColors.map((opt) => (
-                <Option
-                  key={opt.value}
-                  value={opt.value}
-                  title={opt.title}
-                  groupName="fontColor"
-                  selected={settings.fontColor}
-                  option={opt}
-                  onChange={(option) => handleChange('fontColor', option)}
-                />
-              ))}
-            </div>
+			<Select
+			// name="fontColor"
+			title="Цвет шрифта"
+			options={fontColors}
+			selected={settings.fontColor}
+			onChange={(option) => handleChange('fontColor', option)}
+			/>
 
-            <div>
-              <h3>Ширина контента</h3>
-              {contentWidthArr.map((opt) => (
-                <Option
-                  key={opt.value}
-                  value={opt.value}
-                  title={opt.title}
-                  groupName="contentWidth"
-                  selected={settings.contentWidth}
-                  option={opt}
-                  onChange={(option) => handleChange('contentWidth', option)}
-                />
-              ))}
-            </div>
+			<Select
+			// name="backgroundColor"
+			title="Цвет фона"
+			options={backgroundColors}
+			selected={settings.backgroundColor}
+			onChange={(option) => handleChange('backgroundColor', option)}
+			/>
 
-            <div>
-              <h3>Цвет фона</h3>
-              {backgroundColors.map((opt) => (
-                <Option
-                  key={opt.value}
-                  value={opt.value}
-                  title={opt.title}
-                  groupName="backgroundColor"
-                  selected={settings.backgroundColor}
-                  option={opt}
-                  onChange={(option) => handleChange('backgroundColor', option)}
-                />
-              ))}
-            </div>
+			<Select
+			// name="contentWidth"
+			title="Ширина контента"
+			options={contentWidthArr}
+			selected={settings.contentWidth}
+			onChange={(option) => handleChange('contentWidth', option)}
+			/>
 
             <div className={styles.bottomContainer}>
               <Button title="Сбросить" htmlType="reset" type="clear" />
