@@ -21,7 +21,6 @@ export const ArrowButton = forwardRef<HTMLDivElement, ArrowButtonProps>(
 			[styles.container_open]: isOpen,
 		  })}
 		  onClick={(e) => {
-			console.log('[ArrowButton] Click! isOpen:', isOpen);
 			onClick(e);
 		  }}
 		>

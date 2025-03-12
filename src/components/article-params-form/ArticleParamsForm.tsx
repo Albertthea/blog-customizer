@@ -86,14 +86,13 @@ export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) =
           <form className={styles.form} onSubmit={handleSubmit} onReset={handleReset}>
             
             <Select
-			// name="fontFamily"
 			title="Шрифт"
 			options={fontFamilyOptions}
 			selected={settings.fontFamily}
 			onChange={(option) => handleChange('fontFamily', option)}
 			/>
 
-<			RadioGroup
+			<RadioGroup
 			name="fontSize"
 			title="Размер шрифта"
 			options={fontSizeOptions}
@@ -102,7 +101,6 @@ export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) =
 			/>
 
 			<Select
-			// name="fontColor"
 			title="Цвет шрифта"
 			options={fontColors}
 			selected={settings.fontColor}
@@ -110,7 +108,6 @@ export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) =
 			/>
 
 			<Select
-			// name="backgroundColor"
 			title="Цвет фона"
 			options={backgroundColors}
 			selected={settings.backgroundColor}
@@ -118,7 +115,6 @@ export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) =
 			/>
 
 			<Select
-			// name="contentWidth"
 			title="Ширина контента"
 			options={contentWidthArr}
 			selected={settings.contentWidth}
