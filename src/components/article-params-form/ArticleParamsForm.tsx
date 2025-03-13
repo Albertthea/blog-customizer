@@ -12,6 +12,7 @@ import {
   contentWidthArr,
   fontFamilyOptions,
   OptionType,
+  defaultArticleState,
 } from '../../constants/articleProps';
 
 import styles from './ArticleParamsForm.module.scss';
@@ -31,13 +32,12 @@ type Props = {
 
 export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
-
   const defaultSettings = {
-    fontFamily: fontFamilyOptions[0],
-    fontSize: fontSizeOptions[0],
-    fontColor: fontColors[0],
-    contentWidth: contentWidthArr[0],
-    backgroundColor: backgroundColors[0],
+    fontFamily: defaultArticleState.fontFamilyOption,
+    fontSize: defaultArticleState.fontSizeOption,
+    fontColor: defaultArticleState.fontColor,
+    contentWidth: defaultArticleState.contentWidth,
+    backgroundColor: defaultArticleState.backgroundColor,
   };
 
   const [settings, setSettings] = useState(defaultSettings);
