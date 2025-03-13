@@ -1,5 +1,4 @@
 import { CSSProperties, useState } from 'react';
-import clsx from 'clsx';
 
 import { Article } from '../article/Article';
 import { ArticleParamsForm } from '../article-params-form/ArticleParamsForm';
@@ -16,14 +15,9 @@ export const App = () => {
     backgroundColor: defaultArticleState.backgroundColor.value,
   });
 
-  const [isFormOpen, setIsFormOpen] = useState(false);
-
-  const openForm = () => setIsFormOpen(true);
-  const closeForm = () => setIsFormOpen(false);
-
   return (
     <main
-      className={clsx(styles.main)}
+      className={styles.main}
       style={
         {
           '--font-family': articleStyles.fontFamily,
@@ -35,13 +29,7 @@ export const App = () => {
       }
     >
       <ArticleParamsForm
-        isOpen={isFormOpen}
-        onOpen={openForm}
-        onClose={closeForm}
-        onApply={(settings) => {
-          setArticleStyles(settings);
-          closeForm();
-        }}
+        onApply={setArticleStyles}
       />
       <Article />
     </main>

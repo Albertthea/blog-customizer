@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import clsx from 'clsx';
 import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
@@ -19,9 +19,6 @@ import styles from './ArticleParamsForm.module.scss';
 import { useCloseOnOutsideClick } from 'src/ui/select/hooks/useCloseOnOutsideClick';
 
 type Props = {
-  isOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
   onApply: (settings: {
     fontFamily: string;
     fontSize: string;
@@ -31,8 +28,10 @@ type Props = {
   }) => void;
 };
 
-export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) => {
+export const ArticleParamsForm = ({ onApply }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  
   const defaultSettings = {
     fontFamily: defaultArticleState.fontFamilyOption,
     fontSize: defaultArticleState.fontSizeOption,
@@ -42,7 +41,7 @@ export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) =
   };
 
   const [settings, setSettings] = useState(defaultSettings);
-  useCloseOnOutsideClick(isOpen, containerRef, onClose);
+  useCloseOnOutsideClick(isOpen, containerRef, () => setIsOpen(false));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,6 +52,7 @@ export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) =
       contentWidth: settings.contentWidth.value,
       backgroundColor: settings.backgroundColor.value,
     });
+	setIsOpen(false);
   };
 
   const handleReset = () => {
@@ -64,6 +64,7 @@ export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) =
 		contentWidth: defaultSettings.contentWidth.value,
 		backgroundColor: defaultSettings.backgroundColor.value,
 	  });
+	setIsOpen(false);
   };
 
   const handleChange = (group: keyof typeof settings, option: OptionType) => {
@@ -75,7 +76,7 @@ export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) =
 
   return (
     <>
-      <ArrowButton isOpen={isOpen} onClick={isOpen ? onClose : onOpen} />
+      <ArrowButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
       {isOpen && (
         <aside ref={containerRef} className={clsx(styles.container, { [styles.container_open]: isOpen })}>
           <form className={styles.form} onSubmit={handleSubmit} onReset={handleReset}>
