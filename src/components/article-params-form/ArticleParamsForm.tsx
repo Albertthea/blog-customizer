@@ -84,7 +84,7 @@ export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) =
       {isOpen && (
         <aside ref={containerRef} className={clsx(styles.container, { [styles.container_open]: isOpen })}>
           <form className={styles.form} onSubmit={handleSubmit} onReset={handleReset}>
-            
+		  <h2 className={styles.title}>Задайте параметры</h2>
             <Select
 			title="Шрифт"
 			options={fontFamilyOptions}
