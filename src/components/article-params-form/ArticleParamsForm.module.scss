@@ -23,10 +23,22 @@
 	padding: 50px 31px;
 	background-color: #ffffff;
 	border-right: 1px solid #000000;
+	gap: 50px;
 }
 
 .bottomContainer {
 	display: flex;
 	justify-content: space-between;
 	margin-top: auto;
+}
+
+.title {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+	font-size: 31px;
+	line-height: 100%;
+	letter-spacing: 0;
+	text-transform: uppercase;
+	color: #000000;
+	margin-bottom: 50px;
 }

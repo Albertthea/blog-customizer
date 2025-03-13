@@ -1,6 +1,13 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+	width: 100%;
+}
+
 .group {
-	display: inline-flex;
-	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
 	max-width: fit-content;
 	border: 1px solid #000000;
 }
@@ -31,8 +38,6 @@
 	border-right: 1px solid #000000;
 	cursor: pointer;
 }
-
-/* Убираем бордер у последнего в radiogroup, чтобы не было двойного бордера */
 
 .label:hover {
 	background-color: #ffedab;
