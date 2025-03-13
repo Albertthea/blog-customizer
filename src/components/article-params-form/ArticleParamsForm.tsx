@@ -32,13 +32,15 @@ type Props = {
 export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const [settings, setSettings] = useState({
+  const defaultSettings = {
     fontFamily: fontFamilyOptions[0],
     fontSize: fontSizeOptions[0],
     fontColor: fontColors[0],
     contentWidth: contentWidthArr[0],
     backgroundColor: backgroundColors[0],
-  });
+  };
+
+  const [settings, setSettings] = useState(defaultSettings);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -62,13 +64,14 @@ export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) =
   };
 
   const handleReset = () => {
-    setSettings({
-      fontFamily: fontFamilyOptions[0],
-      fontSize: fontSizeOptions[0],
-      fontColor: fontColors[0],
-      contentWidth: contentWidthArr[0],
-      backgroundColor: backgroundColors[0],
-    });
+    setSettings(defaultSettings);
+	onApply({
+		fontFamily: defaultSettings.fontFamily.value,
+		fontSize: defaultSettings.fontSize.value,
+		fontColor: defaultSettings.fontColor.value,
+		contentWidth: defaultSettings.contentWidth.value,
+		backgroundColor: defaultSettings.backgroundColor.value,
+	  });
   };
 
   const handleChange = (group: keyof typeof settings, option: OptionType) => {
