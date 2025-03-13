@@ -16,6 +16,7 @@ import {
 } from '../../constants/articleProps';
 
 import styles from './ArticleParamsForm.module.scss';
+import { useCloseOnOutsideClick } from 'src/ui/select/hooks/useCloseOnOutsideClick';
 
 type Props = {
   isOpen: boolean;
@@ -41,16 +42,7 @@ export const ArticleParamsForm = ({ isOpen, onOpen, onClose, onApply }: Props) =
   };
 
   const [settings, setSettings] = useState(defaultSettings);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      const clickTarget = e.target as Node;
-      if (containerRef.current?.contains(clickTarget)) return;
-      onClose();
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isOpen, onClose]);
+  useCloseOnOutsideClick(isOpen, containerRef, onClose);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
